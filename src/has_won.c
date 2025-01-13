@@ -118,6 +118,9 @@ static int has_won_m1_m1(board_t *board)
 
 int has_won(board_t *board)
 {
+    if ((FULLMASK ^ board->any) == 0) {
+        return TURN_NONE;
+    }
     return has_won_1_0(board) || has_won_m1_0(board) || has_won_0_1(board) || has_won_0_m1(board) ||
         has_won_1_1(board) || has_won_1_m1(board) || has_won_m1_1(board) || has_won_m1_m1(board);
 }

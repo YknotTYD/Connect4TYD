@@ -65,6 +65,7 @@ int display_board(board_t *board)
 int drop(board_t *board, int x)
 {
     int y;
+    int result;
 
     for (y = 0; y < HEIGHT; y++) {
         if (CINDEX(board->any, x, y)) {
@@ -75,10 +76,12 @@ int drop(board_t *board, int x)
 
     CURRENT_COLOR(board) |= OMASK(x, y);
     board->any = board->red | board->yellow;
-    board->turn = board->turn == TURN_RED ? TURN_YELLOW: TURN_RED;
 
     board->last_drop_x = x;
     board->last_drop_y = y;
 
-    return y;
+    result = has_won(board);
+    board->turn = board->turn == TURN_RED ? TURN_YELLOW: TURN_RED;
+
+    return result;
 }

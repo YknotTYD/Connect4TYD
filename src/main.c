@@ -2,31 +2,21 @@
 
 #include "../include/main.h"
 
-int main(int argc, char **argv)
+int main(void)
 {
     board_t board;
 
     init_board(&board);
-
-    drop(&board, 0);
-    drop(&board, 1);
-    drop(&board, 1);
-    drop(&board, 2);
-    drop(&board, 2);
-    drop(&board, 3);
-    drop(&board, 2);
-    drop(&board, 3);
-    drop(&board, 3);
-    drop(&board, 5);
-    drop(&board, 3);
-    
-    board.turn = !board.turn;
-
-    printf("%i", has_won(&board));
-
+int f;
+    for (int i = 0; i < WIDTH; i++) {
+        for (int j = 0; j < HEIGHT; j++) {
+            if (f = drop(&board, i)) {
+                printf("%i\n", f);
+            }
+        }
+    }
     display_board(&board);
 
-    (void)argc;
-    (void)argv;
+
     return 0;
 }

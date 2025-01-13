@@ -15,6 +15,7 @@
 
 #define TURN_RED 0
 #define TURN_YELLOW 1
+#define TURN_NONE -1 //has to not be 0
 #define CURRENT_COLOR(board) (*((board)->turn == TURN_RED ? &board->red: &board->yellow))
 #define COLOR(board, aturn) (*((board)->turn == (aturn) ? &(board)->red: &(board)->yellow))
 #define CINDEX(color, x, y) (((color) << (63 - (y) * WIDTH - (x))) >> 63)
@@ -22,6 +23,7 @@
 #define HMASK ((unsigned long long int)0b1111)
 #define VMASK ((long long int)(1 << (WIDTH * 3)) | (1 << (WIDTH * 2)) | (1 << (WIDTH * 1)) | (1 << (WIDTH * 0)))
 #define OMASK(x, y) (1ULL << ((y) * WIDTH + (x)))
+#define FULLMASK ((1ULL << (WIDTH * HEIGHT)) - 1)
 
 typedef unsigned long long int color_t;
 typedef struct {
