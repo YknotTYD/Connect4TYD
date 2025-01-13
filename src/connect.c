@@ -16,6 +16,28 @@ board_t init_board(board_t *board)
     return *board;
 }
 
+board_t *board_copy(board_t *board)
+{
+    board_t *new = malloc(sizeof(board_t));
+
+    new->red = board->red;
+    new->yellow = board->yellow;
+    new->any = board->any;
+    new->turn = board->turn;
+    new->last_drop_x = board->last_drop_x;
+    new->last_drop_y = board->last_drop_y;
+
+    return new;
+}
+
+board_t *drop_copy(board_t *board, int x)
+{
+    board_t *new = board_copy(board);
+
+    drop(board, x);
+    return new;
+}
+
 static int printc(char *str, int color)
 {
     int sum = 0;
@@ -36,6 +58,7 @@ static int printc(char *str, int color)
     }
 
     sum += write(1, str, lenght);
+    sum += write(1, "\x1b[38;2;255;255;255m", 19);
     return sum;
 }
 

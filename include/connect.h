@@ -5,6 +5,7 @@
 
 #include <stdio.h>
 #include <unistd.h>
+#include <stdlib.h>
 
 #define WIDTH 7
 #define HEIGHT 6
@@ -25,6 +26,8 @@
 #define OMASK(x, y) (1ULL << ((y) * WIDTH + (x)))
 #define FULLMASK ((1ULL << (WIDTH * HEIGHT)) - 1)
 
+//had 2 diag masks
+
 typedef unsigned long long int color_t;
 typedef struct {
     color_t red;
@@ -39,5 +42,10 @@ int display_board(board_t *board);
 board_t init_board(board_t *board);
 int drop(board_t *board, int x);
 int has_won(board_t *board);
+board_t *board_copy(board_t *board);
+board_t *drop_copy(board_t *board, int x);
+int stockpufferfish(board_t *board);
+
+//make a extern const typedef struct connect.* instead
 
 #endif
